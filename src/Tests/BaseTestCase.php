@@ -34,14 +34,17 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase{
     {
         if($size){
             $unit=array('b','kb','mb','gb','tb','pb');
-            return round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
+            return round($size/pow(1024,($i=floor(log($size,1024)))),8).' '.$unit[$i];
         }
         else{
-            return 0;
+            return "0 b";
         }
     }
-    function formatTime($seconds) {
-       return number_format($seconds,2). " s";
+    protected function formatTime($seconds) {
+       return number_format($seconds,8). " s";
+    }
+    protected function log($message){
+        fwrite(STDOUT, $message. "\n");
     }
     
 }

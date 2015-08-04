@@ -11,6 +11,12 @@
       <directory suffix=".php">tests/*/</directory>
     </testsuite>
   </testsuites>
+  
+  <groups>
+	  <include>
+	    <group>working</group>
+	  </include>
+  </groups>
 
   <php>
     <const name="PHPUNIT_TESTSUITE" value="true"/>
