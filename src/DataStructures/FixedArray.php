@@ -35,6 +35,10 @@ class FixedArray{
         $value=$this->{$idx};
         return $value;
     }
+    public function setValue($idx,$value){
+        $this->{$idx}=$value;
+        return true;
+    }
     public function removeValue($idx){
         for($i=$idx;$i < $this->_size; $i++){
             $this->{$i}=$this->{$i+1};

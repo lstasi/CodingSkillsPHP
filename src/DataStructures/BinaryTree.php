@@ -2,7 +2,10 @@
 Namespace DataStructures;
 
 class BinaryTree{
-    public function  BinaryTree(){
+    
+    private $rootNode;
+    
+    public function  __construct(){
         
     }
 }
