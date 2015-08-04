@@ -11,6 +11,8 @@
  * @param string $class The fully-qualified class name.
  * @return void
  */
+include 'phpunit/vendor/autoload.php';
+
 spl_autoload_register(function ($class) {
 
     // project-specific namespace prefix
@@ -39,4 +41,5 @@ spl_autoload_register(function ($class) {
         require $file;
     }
 });
+
 ?>
