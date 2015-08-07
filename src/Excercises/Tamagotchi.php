@@ -7,7 +7,7 @@ class Tamagotchi{
     
     private $hungriness;
     
-    public function __construct($hungriness){
+    public function __construct($hungriness=100){
         $this->hungriness=$hungriness;
     }
     
