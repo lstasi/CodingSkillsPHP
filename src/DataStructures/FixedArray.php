@@ -46,13 +46,33 @@ class FixedArray{
         $this->{$this->_size}=$this->initializeValue();
         return true;
     }
+    public function searchValue($value,$type="linear"){
+        switch($type){
+            case "linear":
+                $rtnValue=$this->_searchLinear($value);
+            break;
+            default:
+                throw new Exception("Search method not found");
+        }
+        return $rtnValue;
+    }
+    private function _searchLinear($value){
+        $rtnIdx=false;
+        for($i=1; $i <= $this->_size; $i++){
+            if($this->{$i} == $value){
+                $rtnIdx=$i;
+                break;
+            }
+        }
+        return  $rtnIdx;
+    }
     private function duplicateSize(){
         $oldSize = $this->_size;
         $this->_size *= 2;
         for($i=$oldSize; $i <= $this->_size; $i++){
             $this->{$i}=$this->initializeValue();
         }
-        $this->_current=$oldSize+1;
+        //$this->_current=$oldSize+1;
     }
     private function initialize(){
         if($this->_size){

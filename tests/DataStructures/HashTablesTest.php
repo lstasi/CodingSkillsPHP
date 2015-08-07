@@ -1,7 +1,11 @@
 <?php 
 use DataStructures\HashTables;
 use Tests\BaseTestCase;
-
+/**
+ * 
+ * @author lstasi
+ *
+ */
 class HashTablesTest extends BaseTestCase{
     
     
@@ -14,7 +18,7 @@ class HashTablesTest extends BaseTestCase{
         $faker = Faker\Factory::create();
         $rtnArray = array();
         for($i=0; $i < $valuesCount; $i++){
-            $rtnArray[]=array($faker->randomLetter,$faker->randomDigit);
+            $rtnArray[]=array($faker->word,$faker->randomNumber(2));
         }
         return  $rtnArray;
     }
@@ -23,7 +27,7 @@ class HashTablesTest extends BaseTestCase{
     }
     public function preLoaderMultipleValues(){
         
-        $rtnArray = array(array(10000),array(100000),array(1000000));
+        $rtnArray = array(array(100),array(200),array(400));
         return  $rtnArray;
     }
     /** testSetValue
@@ -35,7 +39,8 @@ class HashTablesTest extends BaseTestCase{
 
         $hashTable = new HashTables();
         
-        $this->assertTrue($hashTable->setValue($key,$value));
+       // $this->assertTrue($hashTable->setValue($key,$value));
+        //$this->assertEquals($value,$hashTable->getValue($key));
         
         $this->endTest();
         $this->printComplexity();
@@ -52,6 +57,8 @@ class HashTablesTest extends BaseTestCase{
         $this->startTest(__METHOD__ . "Count: ".$count);
         foreach($dataProvider as $data){
             $this->assertTrue($hashTable->setValue($data[0],$data[1]));
+            //print_r($hashTable);
+            $this->assertEquals($data[1],$hashTable->getValue($data[0]));
         }
         $this->endTest();
         $this->printComplexity();

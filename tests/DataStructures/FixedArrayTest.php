@@ -69,8 +69,7 @@ class FixedArrayTest extends BaseTestCase{
         $this->printComplexity();
     }
     /** testRemove
-     * @group working
-     * @dataProvider   preLoaderSize
+     *  @dataProvider   preLoaderSize
      */
     public function testRemoveValue($size){
            
