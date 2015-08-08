@@ -1,6 +1,0 @@
-[submodule "phpunit"]
-	path = phpunit
-	url = https://github.com/sebastianbergmann/phpunit.git
-[submodule "Behat"]
-	path = Behat
-	url = git://github.com/Behat/Behat.git
