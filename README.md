@@ -1,6 +1,6 @@
 # CodingSkillsPHP
 
-Install PHP 5.6 (Non Thread Safe)
+Install PHP 5.6 (Non Thread Safe or Thread Safe)
 
 	http://windows.php.net/download/
 	Just uncompress zip file in any folder. Like C:\PHP
@@ -21,7 +21,7 @@ Configure PHP
 
 Dowload Xdebug
 	
-	http://xdebug.org/download.php
+	http://xdebug.org/download.php (TS for Thread Safe)
 	Extract file into {php_folder}/ext/php_xdebug.dll
 	Add extension to php.ini
 		zend_extension = php_xdebug.dll
