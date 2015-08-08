@@ -7,7 +7,7 @@ use Excercises\Tamagotchi;
 class TamagotchiTest extends BaseTestCase{
     
     /**
-     * @group working
+     * 
      */
     public function testFeeding(){
         $tamagotchi = new Tamagotchi(10);
