@@ -11,7 +11,7 @@ class Queue
         $this->doubleLinkedList = new DoubleLinkedList();
     }
 
-    public function queue($value)
+    public function queuein($value)
     {
         $this->doubleLinkedList->addValue($value);
     }

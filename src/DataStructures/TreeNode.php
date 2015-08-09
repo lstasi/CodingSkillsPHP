@@ -3,8 +3,25 @@ Namespace DataStructures;
 
 class TreeNode{
     
+    /**
+     *
+     * @var TreeNode
+     */
+    private $parent;
+    /**
+     * 
+     * @var TreeNode
+     */
     private $leftLeaf;
+    /**
+     *
+     * @var TreeNode
+     */
     private $rightLeaf;
+    /**
+     *
+     * @var TreeNode
+     */
     private $data;
     public function __construct($value) {
     	$this->leftLeaf = NULL;
@@ -36,5 +53,5 @@ class TreeNode{
     	else{
     		return false;
     	}
-    }  
+    }
 }

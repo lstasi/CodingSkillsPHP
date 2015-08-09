@@ -1,8 +1,8 @@
 <?php
 use Tests\BaseTestCase;
-use DataStructures\BinaryTree;
+use DataStructures\BinarySearchTree;
 
-class BinaryTreeTest extends BaseTestCase
+class BinarySearchTreeTest extends BaseTestCase
 {
 
     /**
@@ -12,8 +12,8 @@ class BinaryTreeTest extends BaseTestCase
     public function testAddValue()
     {
         $faker = Faker\Factory::create();
-        $BinaryTree = new BinaryTree();
-        $BinaryTree->addValue($faker->randomNumber(2));
+        $BinarySearchTree = new BinarySearchTree();
+        $BinarySearchTree->addValue($faker->randomNumber(2));
     }
 
     /**
@@ -21,10 +21,10 @@ class BinaryTreeTest extends BaseTestCase
     public function testSearchValue()
     {
         $faker = Faker\Factory::create();
-        $BinaryTree = new BinaryTree();
+        $BinarySearchTree = new BinarySearchTree();
         $randomNumber = $faker->randomNumber(2);
-        $this->assertTrue($BinaryTree->addValue($randomNumber));
-        $node = $BinaryTree->searchValue($randomNumber);
+        $this->assertTrue($BinarySearchTree->addValue($randomNumber));
+        $node = $BinarySearchTree->searchValue($randomNumber);
         $this->assertNotFalse($node);
         $this->assertEquals($randomNumber, $node->getValue());
     }
@@ -49,13 +49,7 @@ class BinaryTreeTest extends BaseTestCase
     {
         $rtnArray = array(
             array(
-                10
-            ),
-            array(
-                50
-            ),
-            array(
-                100
+                20
             )
         );
         return $rtnArray;
@@ -68,16 +62,17 @@ class BinaryTreeTest extends BaseTestCase
      */
     public function testAddValues($count)
     {
-        $BinaryTree = new BinaryTree();
+        $BinarySearchTree = new BinarySearchTree();
         
         $values = $this->preLoaderArrayDataProvider($count);
         $this->startTest(__METHOD__ . "Count: " . $count);
         foreach ($values as $value) {
-            $this->assertTrue($BinaryTree->addValue($value));
+            $this->assertTrue($BinarySearchTree->addValue($value));
         }
         $this->endTest();
         $this->printComplexity();
-        $BinaryTree->printTree(5);
+        //print_r($BinarySearchTree);
+        $BinarySearchTree->printTree(5);
     }
 
     /**
@@ -88,15 +83,15 @@ class BinaryTreeTest extends BaseTestCase
      */
     public function testSearchValues($count)
     {
-        $BinaryTree = new BinaryTree();
+        $BinarySearchTree = new BinarySearchTree();
         $values = $this->preLoaderArrayDataProvider($count);
         
         foreach ($values as $value) {
-            $this->assertTrue($BinaryTree->addValue($value));
+            $this->assertTrue($BinarySearchTree->addValue($value));
         }
         $this->startTest(__METHOD__ . "Count: " . $count);
         foreach ($values as $value) {
-            $node = $BinaryTree->searchValue($value);
+            $node = $BinarySearchTree->searchValue($value);
             $this->assertNotFalse($node);
             $this->assertEquals($value, $node->getValue());
         }

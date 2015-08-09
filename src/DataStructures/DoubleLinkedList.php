@@ -9,6 +9,10 @@ class DoubleLinkedList extends LinkedList
         $newNode = new ListNode($value);
         return $this->_addNode($newNode);
     }
+    public function pushValue($value){
+        $newNode = new ListNode($value);
+        return $this->_setRootNode($newNode);
+    }
     public function removeFirstValue(){
     	$firstNode=$this->getFirstNode();
     	$this->firstNode = $firstNode->getNextNode();
@@ -24,7 +28,13 @@ class DoubleLinkedList extends LinkedList
         unset($lastNode);
         return $value;
     }
-
+    protected  function _setFirstNode(ListNode $node){
+        $currentNode = $this->firstNode;
+        $this->firstNode = $node;
+        $currentNode->setPreviousNode($node);
+        $node->setNextNode($currentNode);
+        return true;
+    }
     protected function _addNode(ListNode $node)
     {
         if ($this->firstNode == NULL) {

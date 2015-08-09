@@ -74,7 +74,7 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase{
      * Output Message for Test
      * @param string $message
      */
-    protected function log(string $message){
+    protected function log($message){
         fwrite(STDOUT, $message. "\n");
     }
     

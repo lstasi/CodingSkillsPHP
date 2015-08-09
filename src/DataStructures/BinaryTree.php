@@ -8,19 +8,19 @@ class BinaryTree
      *
      * @var TreeNode
      */
-    private $rootNode;
+    protected $rootNode;
 
     /**
      *
      * @var TreeNode
      */
-    private $lastNode;
+    protected $lastNode;
 
     /**
      *
      * @var $insertQueue Queue
      */
-    private $insertQueue;
+    protected $insertQueue;
 
     public function __construct()
     {
@@ -39,20 +39,20 @@ class BinaryTree
         return true;
     }
 
-    public function _addNode(TreeNode $node)
+    protected function _addNode(TreeNode $node)
     {
         if ($this->rootNode == NULL) {
             $this->rootNode = $node;
             $this->lastNode = $node;
         } else {
-            $this->getLastNode()->addLeaf($node);
+            $this->_getLastNode()->addLeaf($node);
         }
-        $this->insertQueue->queue($node);
+        $this->insertQueue->queuein($node);
     }
 
-    protected function getLastNode()
+    protected function _getLastNode()
     {
-        if ($this->lastNode->getRightLeaf()!=NULL) {
+        if ($this->lastNode->getRightLeaf() != NULL) {
             $this->lastNode = $this->insertQueue->dequeue();
         }
         return $this->lastNode;
@@ -63,35 +63,52 @@ class BinaryTree
         $data[0] = array();
         $data[0][] = $this->rootNode;
         for ($i = 1; $i < $level; $i ++) {
-            $data[$i] = array();
-            foreach ($data[$i - 1] as $node) {
-                /**
-                 *
-                 * @var TreeNode
-                 */
-                $leftNode = $node->getLeftLeaf();
-                if ($leftNode) {
-                    $data[$i][] = $leftNode;
+            if(isset($data[$i - 1])){
+                foreach ($data[$i - 1] as $node) {
+                    /**
+                     *
+                     * @var TreeNode
+                     */
+                    $leftNode = $node->getLeftLeaf();
+                    if ($leftNode) {
+                        $data[$i][] = $leftNode;
+                    }
+                    else{
+                        $data[$i][] = new TreeNode("  ");
+                    }
+                    /**
+                     *
+                     * @var TreeNode
+                     */
+                    $rightNode = $node->getRightLeaf();
+                    if ($rightNode){
+                        $data[$i][] = $rightNode;
+                    }
+                    else{
+                        $data[$i][] = new TreeNode("  ");
+                    }
                 }
-                /**
-                 *
-                 * @var TreeNode
-                 */
-                $rightNode = $node->getRightLeaf();
-                if ($rightNode)
-                    $data[$i][] = $rightNode;
             }
         }
         echo "\n";
-        $i=count($data);
-        foreach($data as $line){
-        	echo str_repeat(" ",$i);
-        	foreach($line as $node){
-        		echo str_repeat(" ",$i/10);
-        		echo $node->getValue();
-        	}
-        	$i--;
-        	echo "\n";
+        $lines = count($data);
+        $maxNodes = pow(2,($lines - 1));
+        $maxLineSize = $maxNodes * 4;
+        $i = 1;
+        foreach ($data as $line) {
+            $nodesLine = pow(2,($i - 1));
+            $lineSize = $nodesLine * 4;
+            $linePos=($maxLineSize / 2) - ($lineSize / 2);
+            //Center Line
+            //echo str_repeat(" ", ($maxLineSize / 2) - ($lineSize / 2));
+            $nodeSpacing = (($maxLineSize-$lineSize)/$nodesLine)/2;
+            foreach ($line as $node) {
+                echo str_repeat(" ",1+$nodeSpacing);
+                echo "".$node->getValue();
+                echo str_repeat(" ",1+$nodeSpacing);
+            }
+            $i ++;
+            echo "\n";
         }
     }
 }
