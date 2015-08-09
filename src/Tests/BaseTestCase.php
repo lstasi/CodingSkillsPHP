@@ -21,7 +21,7 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase{
      * Save Start Time and Initial Memory
      */
     protected function startTest($name){
-        fwrite(STDOUT, $name);
+        fwrite(STDOUT,"\n".$name);
         $this->_startTime=microtime(true);
         $this->_startMemory=memory_get_usage(true);
     }
@@ -78,13 +78,13 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase{
     protected function log($message){
         fwrite(STDOUT, $message. "\n");
     }
-    public function preLoaderArrayDataProvider($valuesCount)
+    public function preLoaderArrayDataProvider($valuesCount,$intSize=2,$strict=true)
     {
         // use the factory to create a Faker\Generator instance
         $faker = Faker\Factory::create();
         $rtnArray = array();
         for ($i = 0; $i < $valuesCount; $i ++) {
-            $rtnArray[] = $faker->randomNumber(2,true);
+            $rtnArray[] = $faker->randomNumber($intSize,$strict);
         }
         return $rtnArray;
     }
