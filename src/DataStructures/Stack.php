@@ -13,7 +13,7 @@ class Stack
 
     public function push($value)
     {
-        $this->doubleLinkedList->pushValue($value);
+        return $this->doubleLinkedList->pushValue($value);
     }
 
     public function pop()

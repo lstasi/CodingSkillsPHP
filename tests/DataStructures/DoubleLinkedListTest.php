@@ -7,16 +7,16 @@ class DoubleLinkedListTest extends BaseTestCase
 
     /**
      *
-     * @param unknown $value            
      */
     public function testAddValue()
     {
         $faker = Faker\Factory::create();
         $DoubleLinkedList = new DoubleLinkedList();
-        $DoubleLinkedList->addValue($faker->randomNumber(2));
+        $DoubleLinkedList->addValue($faker->randomNumber(2,true));
     }
 
     /**
+     * 
      */
     public function testSearchValue()
     {
@@ -27,19 +27,6 @@ class DoubleLinkedListTest extends BaseTestCase
         $node = $DoubleLinkedList->searchValue($randomNumber);
         $this->assertNotFalse($node);
         $this->assertEquals($randomNumber, $node->getValue());
-    }
-
-    public function preLoaderArrayDataProvider($valuesCount)
-    {
-        // use the factory to create a Faker\Generator instance
-        $faker = Faker\Factory::create();
-        $rtnArray = array();
-        for ($i = 0; $i < $valuesCount; $i ++) {
-            $rtnArray[] = array(
-                $faker->randomNumber(2)
-            );
-        }
-        return $rtnArray;
     }
 
     public function data10Array()

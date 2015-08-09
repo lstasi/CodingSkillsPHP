@@ -13,7 +13,7 @@ class Queue
 
     public function queuein($value)
     {
-        $this->doubleLinkedList->addValue($value);
+        return $this->doubleLinkedList->addValue($value);
     }
 
     public function dequeue()

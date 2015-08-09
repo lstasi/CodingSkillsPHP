@@ -24,17 +24,6 @@ class LinkedListTest extends BaseTestCase {
 		$this->assertNotFalse ( $node );
 		$this->assertEquals ( $randomNumber, $node->getValue () );
 	}
-	public function preLoaderArrayDataProvider($valuesCount) {
-		// use the factory to create a Faker\Generator instance
-		$faker = Faker\Factory::create ();
-		$rtnArray = array ();
-		for($i = 0; $i < $valuesCount; $i ++) {
-			$rtnArray [] = array (
-					$faker->randomNumber ( 2 ) 
-			);
-		}
-		return $rtnArray;
-	}
 	public function data10Array() {
 		return $this->preLoaderArrayDataProvider ( 10 );
 	}

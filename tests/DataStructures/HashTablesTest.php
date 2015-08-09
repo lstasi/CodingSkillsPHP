@@ -11,7 +11,7 @@ class HashTablesTest extends BaseTestCase {
 		$hashTable = new HashTables ();
 		$this->assertInstanceOf ( "DataStructures\HashTables", $hashTable );
 	}
-	public function preLoaderArrayDataProvider($valuesCount) {
+	public function preLoaderHashDataProvider($valuesCount) {
 		// use the factory to create a Faker\Generator instance
 		$faker = Faker\Factory::create ();
 		$rtnArray = array ();
@@ -24,7 +24,7 @@ class HashTablesTest extends BaseTestCase {
 		return $rtnArray;
 	}
 	public function preLoader1Value() {
-		return $this->preLoaderArrayDataProvider ( 1 );
+		return $this->preLoaderHashDataProvider ( 1 );
 	}
 	public function preLoaderMultipleValues() {
 		$rtnArray = array (

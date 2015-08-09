@@ -1,6 +1,7 @@
 <?php
 Namespace Tests;
 
+use Faker;
 class BaseTestCase extends \PHPUnit_Framework_TestCase{
     /**
      * Start Time of the test
@@ -77,5 +78,16 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase{
     protected function log($message){
         fwrite(STDOUT, $message. "\n");
     }
+    public function preLoaderArrayDataProvider($valuesCount)
+    {
+        // use the factory to create a Faker\Generator instance
+        $faker = Faker\Factory::create();
+        $rtnArray = array();
+        for ($i = 0; $i < $valuesCount; $i ++) {
+            $rtnArray[] = $faker->randomNumber(2,true);
+        }
+        return $rtnArray;
+    }
+    
     
 }

@@ -29,17 +29,6 @@ class BinaryTreeTest extends BaseTestCase
         $this->assertEquals($randomNumber, $node->getValue());
     }
 
-    public function preLoaderArrayDataProvider($valuesCount)
-    {
-        // use the factory to create a Faker\Generator instance
-        $faker = Faker\Factory::create();
-        $rtnArray = array();
-        for ($i = 0; $i < $valuesCount; $i ++) {
-            $rtnArray[] = $faker->randomNumber(2,true);
-        }
-        return $rtnArray;
-    }
-
     public function data10Array()
     {
         return $this->preLoaderArrayDataProvider(10);
