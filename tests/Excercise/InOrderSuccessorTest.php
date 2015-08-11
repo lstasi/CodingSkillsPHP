@@ -8,8 +8,6 @@ class InOrderSuccessorTest extends BaseTestCase
 {
 
     /**
-     * @group working
-     *
      * @param number $count            
      */
     public function testFindSuccessor($count = 20)
