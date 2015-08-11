@@ -28,6 +28,11 @@ class BinaryTree
         $this->insertQueue = new Queue();
     }
 
+    public function getRootNode()
+    {
+        return $this->rootNode;
+    }
+
     public function addValue($value)
     {
         /**
@@ -63,7 +68,7 @@ class BinaryTree
         $data[0] = array();
         $data[0][] = $this->rootNode;
         for ($i = 1; $i < $level; $i ++) {
-            if(isset($data[$i - 1])){
+            if (isset($data[$i - 1])) {
                 foreach ($data[$i - 1] as $node) {
                     /**
                      *
@@ -72,8 +77,7 @@ class BinaryTree
                     $leftNode = $node->getLeftLeaf();
                     if ($leftNode) {
                         $data[$i][] = $leftNode;
-                    }
-                    else{
+                    } else {
                         $data[$i][] = new TreeNode("  ");
                     }
                     /**
@@ -81,10 +85,9 @@ class BinaryTree
                      * @var TreeNode
                      */
                     $rightNode = $node->getRightLeaf();
-                    if ($rightNode){
+                    if ($rightNode) {
                         $data[$i][] = $rightNode;
-                    }
-                    else{
+                    } else {
                         $data[$i][] = new TreeNode("  ");
                     }
                 }
@@ -92,20 +95,20 @@ class BinaryTree
         }
         echo "\n";
         $lines = count($data);
-        $maxNodes = pow(2,($lines - 1));
+        $maxNodes = pow(2, ($lines - 1));
         $maxLineSize = $maxNodes * 4;
         $i = 1;
         foreach ($data as $line) {
-            $nodesLine = pow(2,($i - 1));
+            $nodesLine = pow(2, ($i - 1));
             $lineSize = $nodesLine * 4;
-            $linePos=($maxLineSize / 2) - ($lineSize / 2);
-            //Center Line
-            //echo str_repeat(" ", ($maxLineSize / 2) - ($lineSize / 2));
-            $nodeSpacing = (($maxLineSize-$lineSize)/$nodesLine)/2;
+            $linePos = ($maxLineSize / 2) - ($lineSize / 2);
+            // Center Line
+            // echo str_repeat(" ", ($maxLineSize / 2) - ($lineSize / 2));
+            $nodeSpacing = (($maxLineSize - $lineSize) / $nodesLine) / 2;
             foreach ($line as $node) {
-                echo str_repeat(" ",1+$nodeSpacing);
-                echo "".$node->getValue();
-                echo str_repeat(" ",1+$nodeSpacing);
+                echo str_repeat(" ", 1 + $nodeSpacing);
+                echo "" . $node->getValue();
+                echo str_repeat(" ", 1 + $nodeSpacing);
             }
             $i ++;
             echo "\n";

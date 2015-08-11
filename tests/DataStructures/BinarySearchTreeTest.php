@@ -1,6 +1,7 @@
 <?php
 use Tests\BaseTestCase;
 use DataStructures\BinarySearchTree;
+use DataStructures\TreeNode;
 
 class BinarySearchTreeTest extends BaseTestCase
 {
@@ -86,5 +87,24 @@ class BinarySearchTreeTest extends BaseTestCase
         }
         $this->endTest();
         $this->printComplexity();
+    }
+    /**
+     */
+    public function testFindNode($count=20){
+    
+        $binarySearchTree = new BinarySearchTree();
+    
+        $values = $this->preLoaderArrayDataProvider($count);
+    
+        foreach ($values as $value) {
+            $this->assertTrue($binarySearchTree->addValue($value));
+        }
+        $lastValue = end($values);
+        $node = new TreeNode($lastValue);
+        $this->startTest(__METHOD__ . "Count: $count ");
+        $nodeFound=$binarySearchTree->findNode($node);
+        $this->endTest();
+        $this->printComplexity();
+        $this->assertEquals($lastValue, $nodeFound->getValue());
     }
 }

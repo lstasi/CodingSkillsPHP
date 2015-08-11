@@ -4,6 +4,12 @@
          bootstrap="bootstrap.php"
          backupGlobals="false"
          colors="true"
+ 		 stopOnError="false"
+         stopOnFailure="false"
+         stopOnIncomplete="false"
+         stopOnSkipped="false"
+         stopOnRisky="false"
+         printerClass="PHPUnit_TextUI_ResultPrinter"
          verbose="true">
   <testsuites>
 

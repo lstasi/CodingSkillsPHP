@@ -18,6 +18,7 @@ class BinarySearchTree extends BinaryTree
     {
         if ($baseNode->getValue() > $node->getValue()) {
             if(is_null($baseNode->getLeftLeaf())){
+                $node->setParent($baseNode);
                 $baseNode->setLeftLeaf($node);
                 return true;
             }
@@ -27,6 +28,7 @@ class BinarySearchTree extends BinaryTree
             
         } elseif ($baseNode->getValue() < $node->getValue()) {
             if(is_null($baseNode->getRightLeaf())){
+                $node->setParent($baseNode);
                 $baseNode->setRightLeaf($node);
                 return true;
             }
@@ -36,6 +38,23 @@ class BinarySearchTree extends BinaryTree
         } else {
             //Node already Added
             return true;
+        }
+    }
+    public function findNode(TreeNode $node)
+    {
+        return $this->_findNode($node,$this->rootNode);
+    }
+    private function _findNode(TreeNode $node,TreeNode $baseNode = NULL){
+        
+        if(is_null($baseNode)){
+            return false;
+        }
+        if ($baseNode->getValue() == $node->getValue()) {
+            return $baseNode;
+        } elseif ($baseNode->getValue() > $node->getValue()) {
+            return $this->_findNode($node,$baseNode->getLeftLeaf());
+        } elseif ($baseNode->getValue() < $node->getValue()) {
+            return $this->_findNode($node,$baseNode->getRightLeaf());
         }
     }
 }

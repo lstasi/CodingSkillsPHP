@@ -39,7 +39,7 @@ class FixedArrayTest extends BaseTestCase
     }
 
     /**
-     * @group working
+     * 
      * @dataProvider preLoaderMultipleValues
      */
     public function testSort($count, $type)
