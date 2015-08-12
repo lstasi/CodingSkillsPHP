@@ -7,7 +7,25 @@ use Excercises\InOrderSuccessor;
 class InOrderSuccessorTest extends BaseTestCase
 {
 
+    
+    public function preLoaderMultipleValues()
+    {
+        $rtnArray = array(
+            array(
+                100
+            ),
+            array(
+                500
+            ),
+            array(
+                1000
+            )
+        );
+        return $rtnArray;
+    }
+    
     /**
+     * @dataProvider preLoaderMultipleValues
      * @param number $count            
      */
     public function testFindSuccessor($count = 20)
@@ -22,7 +40,7 @@ class InOrderSuccessorTest extends BaseTestCase
         $values = array_unique($values);
         $rndIdx = array_rand($values);
         $randomValue = $values[$rndIdx];
-        $this->log("Random Value: " . $randomValue);
+        //$this->log("Random Value: " . $randomValue);
         sort($values);
         $inOrderValue = NULL;
         foreach ($values as $value) {
@@ -35,16 +53,16 @@ class InOrderSuccessorTest extends BaseTestCase
         foreach ($values as $value) {
             $sortedArray .= $value . " ";
         }
-        $this->log($sortedArray);
+        //$this->log($sortedArray);
         
-        $this->log("InOrder Value: " . $inOrderValue);
+        //$this->log("InOrder Value: " . $inOrderValue);
         $node = new TreeNode($randomValue);
         $nodeFound = $binarySearchTree->findNode($node);
         $this->startTest(__METHOD__ . "Count: $count ");
-        $this->log("InOrder Found: " . InOrderSuccessor::findInOrderSuccessor($nodeFound)->getValue());
-        // $this->assertEquals($inOrderValue, InOrderSuccessor::findInOrderSuccessor($nodeFound)->getValue());
+        //$this->log("InOrder Found: " . InOrderSuccessor::findInOrderSuccessor($nodeFound)->getValue());
+        $this->assertEquals($inOrderValue, InOrderSuccessor::findInOrderSuccessor($nodeFound)->getValue());
         $this->endTest();
         $this->printComplexity();
-        $binarySearchTree->printTree(7);
+        //$binarySearchTree->printTree(8);
     }
 }

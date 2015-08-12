@@ -8,7 +8,6 @@ class FindNodesKdistanceTest extends BaseTestCase
 {
 
     /**
-     * @group working
      */
     public function testFind()
     {

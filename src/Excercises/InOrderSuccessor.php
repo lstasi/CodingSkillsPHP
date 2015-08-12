@@ -9,33 +9,20 @@ class InOrderSuccessor
 
     public static function findInOrderSuccessor(TreeNode $node)
     {
-        $parent = $node->getParent();
         
-        if (is_null($parent)) {
-            $inOrderParent = NULL;
-        } else {
-            $inOrderParent = self::traverseUpNodes($parent, $node->getValue());
-        }
         
         $right = $node->getRightLeaf();
-        if (is_null($right)) {
-            $inOrderRight = NULL;
+        if (!is_null($right)) {
+                return self::traverseDownNodes($right, $node->getValue());
         } else {
-            $inOrderRight = self::traverseDownNodes($right, $node->getValue());
-        }
-        
-        if (is_null($inOrderParent)) {
-            $inOrderNode = $inOrderRight;
-        } elseif (is_null($inOrderParent)) {
-            $inOrderNode = $inOrderParent;
-        } else {
-            if ($inOrderParent->getValue() > $inOrderRight->getValue()) {
-                $inOrderNode = $inOrderRight;
-            } else {
-                $inOrderNode = $inOrderParent;
+            $parent = $node->getParent();
+            if (!is_null($parent)) {
+                return self::traverseUpNodes($parent, $node->getValue());
+            }
+            else{
+                return TreeNode(false);
             }
         }
-        return is_null($inOrderNode) ? new TreeNode(0) : $inOrderNode;
     }
 
     public static function traverseDownNodes(TreeNode $node, $value)
@@ -53,14 +40,23 @@ class InOrderSuccessor
     public static function traverseUpNodes(TreeNode $node, $value)
     {
         if ($node->getValue() < $value) {
-            return self::traverseUpNodes($node->getParent(), $value);
+            $parent=$node->getParent();
+            if(!is_null($parent)){
+                return self::traverseUpNodes($parent, $value);
+            }
+            else{
+                return TreeNode(false);
+            }
+            
         } else {
+            return $node;
+            /*
             $leftNode = $node->getLeftLeaf();
             if (is_null($leftNode)) {
                 return $node;
             } else {
                 return self::traverseDownNodes($node->getLeftLeaf(), $value);
-            }
+            }*/
         }
     }
 }
