@@ -3,7 +3,10 @@ namespace DataStructures;
 
 class Stack
 {
-
+    /**
+     * Internal Double Linked List
+     * @var DoubleLinkedList
+     */
     private $doubleLinkedList;
 
     public function __construct()

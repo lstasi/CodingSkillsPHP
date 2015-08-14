@@ -5,19 +5,19 @@ class TreeNode
 {
 
     /**
-     *
+     * Parent Node
      * @var TreeNode
      */
     private $parent;
 
     /**
-     *
+     * Left Leaf Nod
      * @var TreeNode
      */
     private $leftLeaf;
 
     /**
-     *
+     * Rgiht Leaf Node
      * @var TreeNode
      */
     private $rightLeaf;
@@ -72,8 +72,10 @@ class TreeNode
 
     public function addLeaf(TreeNode $node)
     {
+        //Add Node to the left if empty
         if (is_null($this->leftLeaf)) {
             $this->leftLeaf = $node;
+        //Else add node to the right
         } elseif (is_null($this->rightLeaf)) {
             $this->rightLeaf = $node;
         } else {

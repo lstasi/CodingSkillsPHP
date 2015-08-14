@@ -23,6 +23,7 @@ function findSubsetSum($inputArray, $subsetSize, $sum, $currentSum = 0, $current
             if ($currentIdx == $i) {
                 continue;
             }
+            //Check accumulated sum plus current element. Recursion exit.
             if (($inputArray[$i] + $currentSum) === $sum) {
                 return $inputArray[$i];
             } 
@@ -35,7 +36,9 @@ function findSubsetSum($inputArray, $subsetSize, $sum, $currentSum = 0, $current
             if (! is_null($currentIdx) and $currentIdx == $i) {
                 continue;
             }
+            //Recursive the sum foreach subsetSize - 1
             $recursiveResult = findSubsetSum($inputArray, $subsetSize - 1, $sum, $inputArray[$i] + $currentSum, $i);
+            //If sum found, return the list of array items plus current item.
             if ($recursiveResult) {
                 return $recursiveResult . "," . $inputArray[$i];
             }

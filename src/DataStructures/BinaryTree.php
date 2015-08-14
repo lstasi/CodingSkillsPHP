@@ -50,13 +50,16 @@ class BinaryTree
             $this->rootNode = $node;
             $this->lastNode = $node;
         } else {
+            //Get last empty Node
             $this->_getLastNode()->addLeaf($node);
         }
+        //Add node to the insert queue
         $this->insertQueue->queuein($node);
     }
 
     protected function _getLastNode()
     {
+        //If current last node right is not empty get new Node from queue
         if ($this->lastNode->getRightLeaf() != NULL) {
             $this->lastNode = $this->insertQueue->dequeue();
         }
@@ -67,6 +70,7 @@ class BinaryTree
     {
         $data[0] = array();
         $data[0][] = $this->rootNode;
+        //Iterare all nodes push to array
         for ($i = 1; $i < $level; $i ++) {
             if (isset($data[$i - 1])) {
                 foreach ($data[$i - 1] as $node) {

@@ -14,17 +14,24 @@ class DoubleLinkedList extends LinkedList
         return $this->_setFirstNode($newNode);
     }
     public function removeFirstValue(){
+        //Save firstNode
     	$firstNode=$this->getFirstNode();
+    	//Remove node
     	$this->firstNode = $firstNode->getNextNode();
+    	//Save value to return
     	$value = $firstNode->getValue();
+    	//Delete node from memory
     	unset($firstNode);
     	return $value;
     }
     public function removeLastValue()
     {
+        //Save last node
         $lastNode=$this->getLastNode();
         $this->lastNode = $lastNode->getPreviousNode();
+        //Save value for return
         $value = $lastNode->getValue();
+        //Delete node from memory
         unset($lastNode);
         return $value;
     }
@@ -33,8 +40,10 @@ class DoubleLinkedList extends LinkedList
             $this->firstNode = $node;
         }
         else{
+            //Save first node
             $currentNode = $this->firstNode;
             $this->firstNode = $node;
+            //Add new node
             $currentNode->setPreviousNode($node);
             $node->setNextNode($currentNode);
         }
@@ -46,6 +55,7 @@ class DoubleLinkedList extends LinkedList
             $node->setPreviousNode($node);
             $this->firstNode = $node;
         } else {
+            //Add node to the last node of the list
             $lastNode = $this->getLastNode();
             $node->setPreviousNode($lastNode);
             $lastNode->setNextNode($node);

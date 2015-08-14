@@ -3,7 +3,10 @@ namespace DataStructures;
 
 class Queue
 {
-
+    /**
+     * Interanl Double Linked List
+     * @var DoubleLinkedList
+     */
     private $doubleLinkedList;
 
     public function __construct()

@@ -3,11 +3,19 @@ namespace DataStructures;
 
 class ListNode
 {
-
+    /**
+     * Next node in the list
+     * @var ListNode
+     */
     private $nextNode;
-
+    /**
+     * Previous node in the list
+     * @var ListNode
+     */
     private $previousNode;
-
+    /**
+     * Internal Data value
+     */
     private $data;
 
     public function __construct($value)

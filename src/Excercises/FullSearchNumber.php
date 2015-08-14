@@ -29,17 +29,13 @@ foreach ($searchSample as $searchData) {
     
     echo (search($index, $searchData[0]) == $searchData[1] ? "OK" : "KO") . PHP_EOL;
 }
-
+//Build the Index used for the search
 function buildIndex($inputData)
 {
     $index = array();
     
-    $digitSizes = array(
-        1,
-        2,
-        3,
-        4
-    );
+    $digitSizes = array(1,2,3,4);
+    
     //For each Line
     for ($i = 0; $i < count($inputData); $i ++) {
         $line = $inputData[$i];
@@ -72,11 +68,13 @@ function buildIndex($inputData)
 function search($index, $searchValue)
 {
     $finalResult = array();
+    //Check if search value is a key on the Search Index HashMap
     if (isset($index[$searchValue])) {
         $finalResult = $index[$searchValue];
     } else {
         $finalResult = false;
     }
+    //Output as a string
     if ($finalResult) {
         $finalResult = implode(",", $finalResult);
     }

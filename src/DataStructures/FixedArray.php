@@ -3,15 +3,30 @@ namespace DataStructures;
 
 class FixedArray
 {
-
+    /**
+     * Constant for integer type
+     * @var int
+     */
     const TYPE_INT = 101;
-
+    /**
+     * Constant for string type
+     * @var int
+     */
     const TYPE_STRING = 201;
-
+    /**
+     * Size of the array
+     * @var int
+     */
     private $size = 0;
-
+    /**
+     * Type of the array data
+     * @var int
+     */
     private $type = 0;
-
+    /**
+     * Current pointer of the array
+     * @var int
+     */
     private $current = 0;
 
     public function __construct($size, $type)
@@ -33,11 +48,13 @@ class FixedArray
 
     public function addValue($value)
     {
+        //IF array is full duplicate the size
         if ($this->current == $this->size) {
             $this->duplicateSize();
         } else {
             $this->current ++;
         }
+        //Add the value to the next position
         $this->{$this->current} = $value;
         return $this->current;
     }
@@ -56,9 +73,11 @@ class FixedArray
 
     public function removeValue($idx)
     {
+        //Move all the values from the indx one position back
         for ($i = $idx; $i < $this->size; $i ++) {
             $this->{$i} = $this->{$i + 1};
         }
+        //Reset last value
         $this->{$this->size} = $this->initializeValue();
         return true;
     }
@@ -178,6 +197,7 @@ class FixedArray
     private function _findMin($start = 1)
     {
         $currentMin = $start;
+        //Loop all the array compare with current min
         for ($i = $start + 1; $i <= $this->size; $i ++) {
             if ($this->{$currentMin} > $this->{$i}) {
                 $currentMin = $i;
@@ -208,6 +228,7 @@ class FixedArray
     private function _searchLinear($value)
     {
         $rtnIdx = false;
+        //Loop compare all values with input
         for ($i = 1; $i <= $this->size; $i ++) {
             if ($this->{$i} == $value) {
                 $rtnIdx = $i;
@@ -224,15 +245,16 @@ class FixedArray
     {
         $oldSize = $this->size;
         $this->size *= 2;
+        //Initialize the new empty space
         for ($i = $oldSize; $i <= $this->size; $i ++) {
             $this->{$i} = $this->initializeValue();
         }
-        // $this->current=$oldSize+1;
     }
 
     private function initialize()
     {
         if ($this->size) {
+            //Loop for all the values and initialize the value
             for ($i = 1; $i <= $this->size; $i ++) {
                 $this->{$i} = $this->initializeValue();
             }
