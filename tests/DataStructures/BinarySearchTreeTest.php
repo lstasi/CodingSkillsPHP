@@ -61,7 +61,6 @@ class BinarySearchTreeTest extends BaseTestCase
         }
         $this->endTest();
         $this->printComplexity();
-        //print_r($BinarySearchTree);
         $BinarySearchTree->printTree(5);
     }
 
